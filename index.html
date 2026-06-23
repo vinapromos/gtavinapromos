@@ -511,15 +511,6 @@ src="https://www.facebook.com/tr?id=853859867733576&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
   
 </head>
-
-  <script>
-  // Rastreia cliques nos botões CTA (WhatsApp)
-  document.querySelectorAll('.cta-btn').forEach(function(button) {
-    button.addEventListener('click', function() {
-      fbq('track', 'Lead');     // Melhor evento para link de WhatsApp
-    });
-  });
-</script>
   
 <body>
   <!-- Badge -->
@@ -646,5 +637,20 @@ src="https://www.facebook.com/tr?id=853859867733576&ev=PageView&noscript=1"
     © 2026 Vina Promos · gta.vinapromos.com.br · Maior canal de pré-vendas do Brasil · +40.000 membros
   </footer>
 
+  <!-- Rastreamento de Clique no Botão WhatsApp -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.cta-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Lead');
+          fbq('trackCustom', 'WhatsAppClick');
+          console.log('✅ Lead disparado com sucesso!');
+        }
+      });
+    });
+  });
+</script>
+  
 </body>
 </html>
